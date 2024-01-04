@@ -178,38 +178,6 @@
       }
     }
   </style>
-<script>
-  // Function to handle form submission
-  async function subscribe(event) {
-    event.preventDefault(); // Prevent the default form submission
-    var emailInput = document.querySelector(".email-input");
-    var email = emailInput.value;
-
-    // Perform basic email validation
-    if (isValidEmail(email)) {
-      try {
-        // Send the email to your server using fetch
-        const response = await fetch('http://localhost:3009/subscribe', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email: email }),
-        });
-
-        if (response.ok) {
-          // Handle the response from the server
-          const data = await response.json();
-          console.log(data);
-
-          // Display success message
-          showSuccessMessage();
-
-         
-
-
-
-
 </head>
 
 <body>
@@ -250,7 +218,7 @@
       <p>Be a design partner in our road to MVP and keep updated with news about <strong>our tech</strong>, processes, and
         launch.</p>
       <form class="subscribe-form">
-        <input type="email" id="emailInput" name="email" class="email-input" placeholder="Your email">
+        <input type="email" class="email-input" placeholder="Your email">
         <button type="submit" class="subscribe-button">subscribe</button>
       </form>
     </div>
@@ -277,7 +245,16 @@
     <p>Copyright © 2023 scoutedd ltd. All rights reserved.</p>
   </div>
 
+  <script>
+    function toggleDropdown() {
+      var dropdownContent = document.getElementById("dropdownContent");
+      var dropdown = document.querySelector(".dropdown");
+      dropdown.classList.toggle("dropdown-open", !dropdown.classList.contains("dropdown-open"));
+      dropdownContent.style.display = (dropdownContent.style.display === "block") ? "none" : "block";
+    }
+  </script>
 
 </body>
 
 </html>
+
