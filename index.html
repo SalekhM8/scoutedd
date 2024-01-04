@@ -179,49 +179,48 @@
     }
   </style>
 <script>
-   // Function to handle form submission
-    async function subscribe(event) {
-      event.preventDefault(); // Prevent the default form submission
-      var emailInput = document.querySelector(".email-input");
-      var email = emailInput.value;
+  // Function to handle form submission
+  async function subscribe(event) {
+    event.preventDefault(); // Prevent the default form submission
+    var emailInput = document.querySelector(".email-input");
+    var email = emailInput.value;
 
-      // Perform basic email validation
-      if (isValidEmail(email)) {
-        try {
-          // Send the email to your server using fetch
-          const response = await fetch('http://localhost:3009/subscribe', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: email }),
-          });
+    // Perform basic email validation
+    if (isValidEmail(email)) {
+      try {
+        // Send the email to your server using fetch
+        const response = await fetch('http://localhost:3009/subscribe', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: email }),
+        });
 
-          if (response.ok) {
-            // Handle the response from the server
-            const data = await response.json();
-            console.log(data);
+        if (response.ok) {
+          // Handle the response from the server
+          const data = await response.json();
+          console.log(data);
 
-            // Display success message
-            showSuccessMessage();
+          // Display success message
+          showSuccessMessage();
 
-            // Clear the input field after successful submission
-            emailInput.value = "";
-          } else {
-            throw new Error('Server response not OK');
-          }
-        } catch (error) {
-          console.error('Error:', error);
-
-          // Display error message (optional)
-          alert('Something went wrong. Please try again.');
+          // Clear the input field after successful submission
+          emailInput.value = "";
+        } else {
+          throw new Error('Server response not OK');
         }
-      } else {
-        // Handle invalid email
-        alert('Invalid email address');
-      }
-    }
+      } catch (error) {
+        console.error('Error:', error);
 
+        // Display error message (optional)
+        alert('Something went wrong. Please try again.');
+      }
+    } else {
+      // Handle invalid email
+      alert('Invalid email address');
+    }
+  }
 
   function showSuccessMessage() {
     // Create a new element for the success message
@@ -237,9 +236,8 @@
     var successLine = document.createElement("hr");
     subscribeForm.parentNode.insertBefore(successLine, successMessage.nextSibling);
   }
-
-  
 </script>
+
 
   }
 
