@@ -178,69 +178,27 @@
       }
     }
   </style>
-  <script>
-    // Function to handle form submission
-    async function subscribe(event) {
-      event.preventDefault(); // Prevent the default form submission
-      var emailInput = document.querySelector(".email-input");
-      var email = emailInput.value;
+<script>
+  // ... (Your existing code)
 
-      // Perform basic email validation
-      if (isValidEmail(email)) {
-        try {
-          // Send the email to your server using fetch
-          const response = await fetch('http://localhost:3009/subscribe', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: email }),
-          });
+  function showSuccessMessage() {
+    // Create a new element for the success message
+    var successMessage = document.createElement("div");
+    successMessage.innerText = "You're in!";
+    successMessage.style.color = "#5bbad5"; // Set the color to match the theme
 
-          if (response.ok) {
-            // Handle the response from the server
-            const data = await response.json();
-            console.log(data);
+    // Append the success message element after the form
+    var subscribeForm = document.querySelector(".subscribe-form");
+    subscribeForm.parentNode.insertBefore(successMessage, subscribeForm.nextSibling);
 
-            // Display success message
-            showSuccessMessage();
+    // Add a line under the email submission box
+    var successLine = document.createElement("hr");
+    subscribeForm.parentNode.insertBefore(successLine, subscribeForm.nextSibling);
+  }
 
-            // Clear the input field after successful submission
-            emailInput.value = "";
-          } else {
-            throw new Error('Server response not OK');
-          }
-        } catch (error) {
-          console.error('Error:', error);
+  // ... (Your existing code)
+</script>
 
-          // Display error message (optional)
-          alert('Something went wrong. Please try again.');
-        }
-      } else {
-        // Handle invalid email
-        alert('Invalid email address');
-      }
-    }
-
-    function showSuccessMessage() {
-      // Create a new element for the success message
-      var successMessage = document.createElement("div");
-      successMessage.innerText = "You're in!";
-      successMessage.style.color = "#5bbad5"; // Set the color to match the theme
-
-      // Append the success message element after the form
-      var subscribeForm = document.querySelector(".subscribe-form");
-      subscribeForm.parentNode.insertBefore(successMessage, subscribeForm.nextSibling);
-    }
-
-    // Function to validate email format
-    function isValidEmail(email) {
-      return email.includes('@');
-    }
-
-    // Attach the subscribe function to the form submission
-    document.querySelector(".subscribe-form").addEventListener("submit", subscribe);
-  </script>
 </head>
 
 <body>
