@@ -244,73 +244,79 @@
 
   <!-- ... (your HTML code above) ... -->
 
-  <script>
-    // Dummy function for email validation
-    function isValidEmail(email) {
-      // You can replace this with your actual email validation logic
-      return /\S+@\S+\.\S+/.test(email);
-    }
+ <!-- ... (your HTML code above) ... -->
 
-    // Function to handle form submission
-    async function subscribe(event) {
-      event.preventDefault(); // Prevent the default form submission
-      var emailInput = document.querySelector(".email-input");
-      var email = emailInput.value;
+<script>
+  // Dummy function for email validation
+  function isValidEmail(email) {
+    // You can replace this with your actual email validation logic
+    return /\S+@\S+\.\S+/.test(email);
+  }
 
-      // Perform basic email validation
-      if (isValidEmail(email)) {
-        try {
-          // Send the email to your server using fetch
-          const response = await fetch('http://localhost:3009/subscribe', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: email }),
-          });
+  // Function to handle form submission
+  function subscribe(event) {
+    event.preventDefault(); // Prevent the default form submission
+    var emailInput = document.querySelector(".email-input");
+    var email = emailInput.value;
 
+    // Perform basic email validation
+    if (isValidEmail(email)) {
+      // Send the email to your server using fetch
+      fetch('http://localhost:3009/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email }),
+      })
+        .then(response => {
           if (response.ok) {
             // Handle the response from the server
-            const data = await response.json();
-            console.log(data);
-
-            // Display success message
-            showSuccessMessage();
-
-            // Clear the input field after successful submission
-            emailInput.value = "";
+            return response.json();
           } else {
             throw new Error('Server response not OK');
           }
-        } catch (error) {
+        })
+        .then(data => {
+          console.log(data);
+
+          // Display success message
+          showSuccessMessage();
+
+          // Clear the input field after successful submission
+          emailInput.value = "";
+        })
+        .catch(error => {
           console.error('Error:', error);
 
           // Display error message (optional)
           alert('Something went wrong. Please try again.');
-        }
-      } else {
-        // Handle invalid email
-        alert('Invalid email address');
-      }
-
-      console.log('subscribe function called'); // Add this line for confirmation
+        });
+    } else {
+      // Handle invalid email
+      alert('Invalid email address');
     }
 
-    function showSuccessMessage() {
-      // Create a new element for the success message
-      var successMessage = document.createElement("div");
-      successMessage.innerText = "You're in!";
-      successMessage.style.color = "#5bbad5"; // Set the color to match the theme
+    console.log('subscribe function called'); // Add this line for confirmation
+  }
 
-      // Append the success message element after the form
-      var subscribeForm = document.querySelector(".subscribe-form");
-      subscribeForm.parentNode.insertBefore(successMessage, subscribeForm.nextSibling);
+  function showSuccessMessage() {
+    // Create a new element for the success message
+    var successMessage = document.createElement("div");
+    successMessage.innerText = "You're in!";
+    successMessage.style.color = "#5bbad5"; // Set the color to match the theme
 
-      // Add a line under the success message
-      var successLine = document.createElement("hr");
-      subscribeForm.parentNode.insertBefore(successLine, successMessage.nextSibling);
-    }
-  </script>
+    // Append the success message element after the form
+    var subscribeForm = document.querySelector(".subscribe-form");
+    subscribeForm.parentNode.insertBefore(successMessage, subscribeForm.nextSibling);
+
+    // Add a line under the success message
+    var successLine = document.createElement("hr");
+    subscribeForm.parentNode.insertBefore(successLine, successMessage.nextSibling);
+  }
+</script>
+
+<!-- ... (the rest of your HTML code) ... -->
 
 <!-- ... (the rest of your HTML code) ... -->
 
