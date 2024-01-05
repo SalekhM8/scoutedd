@@ -10,55 +10,53 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f5f5f5; /* Light background color */
-      color: #5bbad5; /* Baby blue color */
+      background-color: #f5f5f5;
+      color: #5bbad5;
     }
 
     header {
-      background-color: #ffffff; /* White background color */
-      color: #5bbad5; /* Baby blue color */
+      background-color: #ffffff;
+      color: #5bbad5;
       text-align: center;
-      padding: 3.3em 0; /* Adjusted padding */
+      padding: 3.3em 0;
       position: fixed;
       top: 0;
       width: 100%;
       z-index: 1000;
       display: flex;
       align-items: center;
-      justify-content: space-between; /* Adjusted alignment */
-      padding: 0 20px; /* Adjusted padding */
+      justify-content: space-between;
+      padding: 0 20px;
     }
 
     #logo {
-      width: 30px; /* Adjusted size */
-      height: 30px; /* Adjusted size */
+      width: 30px;
+      height: 30px;
     }
 
     .home-button {
       text-decoration: none;
-      color: #5bbad5; /* Baby blue color */
+      color: #5bbad5;
       font-weight: bold;
     }
 
     .container {
       max-width: 1200px;
-      margin: 192px auto; /* Adjusted margin-top */
+      margin: 192px auto;
       padding: 20px;
       position: relative;
       overflow: hidden;
     }
 
-    h1,
-    h2,
-    h3 {
-      color: #5bbad5; /* Baby blue color */
-      font-weight: bold; /* Added font weight */
+    h2 {
+      color: #5bbad5;
+      font-weight: bold;
     }
 
     .line {
       width: 80px;
       height: 3px;
-      background-color: #5bbad5; /* Baby blue color */
+      background-color: #5bbad5;
       margin: 10px 0;
     }
 
@@ -80,18 +78,18 @@
     .arrow-down {
       display: inline-block;
       margin-left: 5px;
-      transform: rotate(90deg); /* Initial rotation */
+      transform: rotate(90deg);
       transition: transform 0.3s ease-in-out;
     }
 
     .dropdown-open .arrow-down {
-      transform: rotate(0deg); /* Rotate arrow when dropdown is open */
+      transform: rotate(0deg);
     }
 
     .wavy-line {
       fill: none;
-      stroke: #5bbad5; /* Baby blue color */
-      stroke-width: 6; /* Adjusted stroke-width */
+      stroke: #5bbad5;
+      stroke-width: 6;
     }
 
     .footer {
@@ -99,7 +97,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px;
-      margin-top: 1.5in; /* Adjusted margin-top */
+      margin-top: 1.5in;
     }
 
     .left-footer,
@@ -115,21 +113,21 @@
 
     .middle-left {
       position: absolute;
-      left: calc(50% - 202px); /* Adjusted position */
+      left: calc(50% - 202px);
     }
 
     .middle-right {
       position: absolute;
-      right: calc(50% - 201px); /* Adjusted position */
+      right: calc(50% - 201px);
     }
 
     .bottom-footer {
-      margin-top: 1.5in; /* Adjusted margin-top */
+      margin-top: 1.5in;
       text-align: center;
     }
 
     .email-subscription {
-      margin-top: 3in; /* Adjusted margin-top */
+      margin-top: 3in;
       text-align: center;
     }
 
@@ -142,15 +140,15 @@
 
     .email-input {
       border: none;
-      border-bottom: 1px solid #5bbad5; /* Baby blue color */
+      border-bottom: 1px solid #5bbad5;
       margin-right: 10px;
       padding: 5px;
       outline: none;
-      color: #5bbad5; /* Baby blue color */
+      color: #5bbad5;
     }
 
     .subscribe-button {
-      background-color: #5bbad5; /* Baby blue color */
+      background-color: #5bbad5;
       color: #ffffff;
       border: none;
       padding: 5px 10px;
@@ -178,71 +176,6 @@
       }
     }
   </style>
-<script>
-  // Function to handle form submission
-function subscribe(event) {
-  event.preventDefault(); // Prevent the default form submission
-  var emailInput = document.querySelector(".email-input");
-  var email = emailInput.value;
-
-  // Perform basic email validation
-  if (isValidEmail(email)) {
-    try {
-      // Send the email to your server using fetch
-      const response = await fetch('http://localhost:3009/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: email }),
-      });
-
-      if (response.ok) {
-        // Handle the response from the server
-        const data = await response.json();
-        console.log(data);
-
-        // Display success message
-        showSuccessMessage();
-
-        // Clear the input field after successful submission
-        emailInput.value = "";
-      } else {
-        throw new Error('Server response not OK');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-
-      // Display error message (optional)
-      alert('Something went wrong. Please try again.');
-    }
-  } else {
-    // Handle invalid email
-    alert('Invalid email address');
-  }
-  
-  console.log('subscribe function called'); // Add this line for confirmation
-}
-
-  }
-
-  function showSuccessMessage() {
-    // Create a new element for the success message
-    var successMessage = document.createElement("div");
-    successMessage.innerText = "You're in!";
-    successMessage.style.color = "#5bbad5"; // Set the color to match the theme
-
-    // Append the success message element after the form
-    var subscribeForm = document.querySelector(".subscribe-form");
-    subscribeForm.parentNode.insertBefore(successMessage, subscribeForm.nextSibling);
-
-    // Add a line under the success message
-    var successLine = document.createElement("hr");
-    subscribeForm.parentNode.insertBefore(successLine, successMessage.nextSibling);
-  }
-</script>
-
-
 </head>
 
 <body>
@@ -255,8 +188,6 @@ function subscribe(event) {
 
   <div class="container">
     <div class="moving-graphic">
-      <!-- Replace this with your preferred graphic -->
-      <!-- <img src="your-graphic-url" alt="Moving Graphic"> -->
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100">
         <path fill="#5bbad5"
           d="M0 30c180 0 180 70 360 70s180-70 360-70 180 70 360 70 180-70 360-70 180 70 360 70 180-70 360-70" />
@@ -283,11 +214,10 @@ function subscribe(event) {
     <div class="email-subscription">
       <p>Be a design partner in our road to MVP and keep updated with news about <strong>our tech</strong>, processes, and
         launch.</p>
-      <<form class="subscribe-form" onsubmit="subscribe(event)">
-  <input type="email" id="emailInput" name="email" class="email-input" placeholder="Your email">
-  <button type="submit" class="subscribe-button">subscribe</button>
-</form>
-
+      <form class="subscribe-form" onsubmit="subscribe(event)">
+        <input type="email" id="emailInput" name="email" class="email-input" placeholder="Your email">
+        <button type="submit" class="subscribe-button">subscribe</button>
+      </form>
     </div>
   </div>
 
@@ -312,8 +242,68 @@ function subscribe(event) {
     <p>Copyright © 2023 scoutedd ltd. All rights reserved.</p>
   </div>
 
+  <script>
+    // Function to handle form submission
+    async function subscribe(event) {
+      event.preventDefault(); // Prevent the default form submission
+      var emailInput = document.querySelector(".email-input");
+      var email = emailInput.value;
+
+      // Perform basic email validation
+      if (isValidEmail(email)) {
+        try {
+          // Send the email to your server using fetch
+          const response = await fetch('http://localhost:3009/subscribe', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email: email }),
+          });
+
+          if (response.ok) {
+            // Handle the response from the server
+            const data = await response.json();
+            console.log(data);
+
+            // Display success message
+            showSuccessMessage();
+
+            // Clear the input field after successful submission
+            emailInput.value = "";
+          } else {
+            throw new Error('Server response not OK');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+
+          // Display error message (optional)
+          alert('Something went wrong. Please try again.');
+        }
+      } else {
+        // Handle invalid email
+        alert('Invalid email address');
+      }
+
+      console.log('subscribe function called'); // Add this line for confirmation
+    }
+
+    function showSuccessMessage() {
+      // Create a new element for the success message
+      var successMessage = document.createElement("div");
+      successMessage.innerText = "You're in!";
+      successMessage.style.color = "#5bbad5"; // Set the color to match the theme
+
+      // Append the success message element after the form
+      var subscribeForm = document.querySelector(".subscribe-form");
+      subscribeForm.parentNode.insertBefore(successMessage, subscribeForm.nextSibling);
+
+      // Add a line under the success message
+      var successLine = document.createElement("hr");
+      subscribeForm.parentNode.insertBefore(successLine, successMessage.nextSibling);
+    }
+  </script>
 
 </body>
 
 </html>
-
