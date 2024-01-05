@@ -246,6 +246,8 @@
 
  <!-- ... (your HTML code above) ... -->
 
+<!-- ... (your HTML code above) ... -->
+
 <script>
   // Dummy function for email validation
   function isValidEmail(email) {
@@ -274,7 +276,7 @@
             // Handle the response from the server
             return response.json();
           } else {
-            throw new Error('Server response not OK');
+            throw new Error(`Server response not OK: ${response.status} ${response.statusText}`);
           }
         })
         .then(data => {
@@ -289,8 +291,8 @@
         .catch(error => {
           console.error('Error:', error);
 
-          // Display error message (optional)
-          alert('Something went wrong. Please try again.');
+          // Display error message with more details
+          alert(`Something went wrong. Please try again. (${error.message})`);
         });
     } else {
       // Handle invalid email
@@ -315,8 +317,6 @@
     subscribeForm.parentNode.insertBefore(successLine, successMessage.nextSibling);
   }
 </script>
-
-<!-- ... (the rest of your HTML code) ... -->
 
 <!-- ... (the rest of your HTML code) ... -->
 
