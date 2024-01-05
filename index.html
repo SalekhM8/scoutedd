@@ -243,6 +243,8 @@
   </div>
 
  
+<!-- ... (your HTML code above) ... -->
+
 <script>
   // Dummy function for email validation
   function isValidEmail(email) {
@@ -258,37 +260,31 @@
 
     // Perform basic email validation
     if (isValidEmail(email)) {
-      // Send the email to your server using fetch
-      fetch('http://localhost:3009/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: email }),
-      })
-        .then(response => {
-          if (response.ok) {
+      // Send the email to your server using XMLHttpRequest
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'http://localhost:3009/subscribe', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
             // Handle the response from the server
-            return response.json();
+            var data = JSON.parse(xhr.responseText);
+            console.log(data);
+
+            // Display success message
+            showSuccessMessage();
+
+            // Clear the input field after successful submission
+            emailInput.value = "";
           } else {
-            throw new Error(`Server response not OK: ${response.status} ${response.statusText}`);
+            console.error('Server response not OK:', xhr.status, xhr.statusText);
+
+            // Display error message with more details
+            alert(`Something went wrong. Please try again. (Server response: ${xhr.status} ${xhr.statusText})`);
           }
-        })
-        .then(data => {
-          console.log(data);
-
-          // Display success message
-          showSuccessMessage();
-
-          // Clear the input field after successful submission
-          emailInput.value = "";
-        })
-        .catch(error => {
-          console.error('Error:', error);
-
-          // Display error message with more details
-          alert(`Something went wrong. Please try again. (${error.message})`);
-        });
+        }
+      };
+      xhr.send(JSON.stringify({ email: email }));
     } else {
       // Handle invalid email
       alert('Invalid email address');
