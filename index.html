@@ -214,7 +214,7 @@
     <div class="email-subscription">
       <p>Be a design partner in our road to MVP and keep updated with news about <strong>our tech</strong>, processes, and
         launch.</p>
-      <form class="subscribe-form" onsubmit="subscribe(event)">
+      <form class="subscribe-form" onsubmit="subscribe(event, 'https://w7mhbsryxj.execute-api.eu-north-1.amazonaws.com/Prod')">
         <input type="email" id="emailInput" name="email" class="email-input" placeholder="Your email">
         <button type="submit" class="subscribe-button">subscribe</button>
       </form>
@@ -242,33 +242,38 @@
     <p>Copyright © 2023 scoutedd ltd. All rights reserved.</p>
   </div>
 
- 
-<!-- ... (your HTML code above) ... -->
+  <script>
+    // Dummy function for email validation
+    function isValidEmail(email) {
+      // You can replace this with your actual email validation logic
+      return /\S+@\S+\.\S+/.test(email);
+    }
 
-<script>
-  // Dummy function for email validation
-  function isValidEmail(email) {
-    // You can replace this with your actual email validation logic
-    return /\S+@\S+\.\S+/.test(email);
-  }
+    // Function to handle form submission
+    function subscribe(event, apiUrl) {
+      event.preventDefault(); // Prevent the default form submission
+      var emailInput = document.querySelector(".email-input");
+      var email = emailInput.value;
 
-  // Function to handle form submission
-  function subscribe(event) {
-    event.preventDefault(); // Prevent the default form submission
-    var emailInput = document.querySelector(".email-input");
-    var email = emailInput.value;
-
-    // Perform basic email validation
-    if (isValidEmail(email)) {
-      // Send the email to your server using XMLHttpRequest
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', 'http://localhost:3009/subscribe', true);
-      xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            // Handle the response from the server
-            var data = JSON.parse(xhr.responseText);
+      // Perform basic email validation
+      if (isValidEmail(email)) {
+        // Send the email to your server using fetch
+        fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: email }),
+        })
+          .then(response => {
+            if (response.ok) {
+              // Handle the response from the server
+              return response.json();
+            } else {
+              throw new Error('Server response not OK');
+            }
+          })
+          .then(data => {
             console.log(data);
 
             // Display success message
@@ -276,41 +281,34 @@
 
             // Clear the input field after successful submission
             emailInput.value = "";
-          } else {
-            console.error('Server response not OK:', xhr.status, xhr.statusText);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            alert(`Something went wrong. Please try again. ${error.message}`);
+          });
+      } else {
+        // Handle invalid email
+        alert('Invalid email address');
+      }
 
-            // Display error message with more details
-            alert(`Something went wrong. Please try again. (Server response: ${xhr.status} ${xhr.statusText})`);
-          }
-        }
-      };
-      xhr.send(JSON.stringify({ email: email }));
-    } else {
-      // Handle invalid email
-      alert('Invalid email address');
+      console.log('subscribe function called'); // Add this line for confirmation
     }
 
-    console.log('subscribe function called'); // Add this line for confirmation
-  }
+    function showSuccessMessage() {
+      // Create a new element for the success message
+      var successMessage = document.createElement("div");
+      successMessage.innerText = "You're in!";
+      successMessage.style.color = "#5bbad5"; // Set the color to match the theme
 
-  function showSuccessMessage() {
-    // Create a new element for the success message
-    var successMessage = document.createElement("div");
-    successMessage.innerText = "You're in!";
-    successMessage.style.color = "#5bbad5"; // Set the color to match the theme
+      // Append the success message element after the form
+      var subscribeForm = document.querySelector(".subscribe-form");
+      subscribeForm.parentNode.insertBefore(successMessage, subscribeForm.nextSibling);
 
-    // Append the success message element after the form
-    var subscribeForm = document.querySelector(".subscribe-form");
-    subscribeForm.parentNode.insertBefore(successMessage, subscribeForm.nextSibling);
-
-    // Add a line under the success message
-    var successLine = document.createElement("hr");
-    subscribeForm.parentNode.insertBefore(successLine, successMessage.nextSibling);
-  }
-</script>
-
-<!-- ... (the rest of your HTML code) ... -->
-
+      // Add a line under the success message
+      var successLine = document.createElement("hr");
+      subscribeForm.parentNode.insertBefore(successLine, successMessage.nextSibling);
+    }
+  </script>
 
 </body>
 
