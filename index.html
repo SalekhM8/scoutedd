@@ -249,31 +249,30 @@
       return /\S+@\S+\.\S+/.test(email);
     }
 
-    // Function to handle form submission
-    function subscribe(event, apiUrl) {
-      event.preventDefault(); // Prevent the default form submission
-      var emailInput = document.querySelector(".email-input");
-      var email = emailInput.value;
+function subscribe(event, apiUrl) {
+    event.preventDefault(); // Prevent the default form submission
+    var emailInput = document.querySelector(".email-input");
+    var email = emailInput.value;
 
-      // Perform basic email validation
-      if (isValidEmail(email)) {
+    // Perform basic email validation
+    if (isValidEmail(email)) {
         // Send the email to your server using fetch
-        fetch(apiUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email: email }),
+        fetch(apiUrl + '/subscribe', { // Updated URL with '/subscribe'
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email: email }),
         })
-          .then(response => {
+        .then(response => {
             if (response.ok) {
-              // Handle the response from the server
-              return response.json();
+                // Handle the response from the server
+                return response.json();
             } else {
-              throw new Error('Server response not OK');
+                throw new Error('Server response not OK');
             }
-          })
-          .then(data => {
+        })
+        .then(data => {
             console.log(data);
 
             // Display success message
@@ -281,18 +280,19 @@
 
             // Clear the input field after successful submission
             emailInput.value = "";
-          })
-          .catch(error => {
+        })
+        .catch(error => {
             console.error('Error:', error);
             alert(`Something went wrong. Please try again. ${error.message}`);
-          });
-      } else {
+        });
+    } else {
         // Handle invalid email
         alert('Invalid email address');
-      }
-
-      console.log('subscribe function called'); // Add this line for confirmation
     }
+
+    console.log('subscribe function called');
+}
+
 
     function showSuccessMessage() {
       // Create a new element for the success message
