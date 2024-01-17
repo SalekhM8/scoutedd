@@ -259,6 +259,7 @@ function subscribe(event, apiUrl) {
         // Send the email to your server using fetch
         fetch(apiUrl + '/subscribe', { // Updated URL with '/subscribe'
             method: 'POST',
+            mode: 'cors', 
             headers: {
                 'Content-Type': 'application/json',
             },
