@@ -1,316 +1,132 @@
-<!DOCTYPE html>
-<html lang="en">
+import * as React from "react";
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scoutedd - Revolutionize Your Due Diligence</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-      color: #5bbad5;
-    }
-
-    header {
-      background-color: #ffffff;
-      color: #5bbad5;
-      text-align: center;
-      padding: 3.3em 0;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-    }
-
-    #logo {
-      width: 30px;
-      height: 30px;
-    }
-
-    .home-button {
-      text-decoration: none;
-      color: #5bbad5;
-      font-weight: bold;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 192px auto;
-      padding: 20px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    h2 {
-      color: #5bbad5;
-      font-weight: bold;
-    }
-
-    .line {
-      width: 80px;
-      height: 3px;
-      background-color: #5bbad5;
-      margin: 10px 0;
-    }
-
-    .dropdown-content {
-      display: none;
-      padding-left: 20px;
-    }
-
-    .dropdown:hover .dropdown-content,
-    .arrow-clickable:hover .dropdown-content {
-      display: block;
-    }
-
-    .dropdown-clickable,
-    .arrow-clickable {
-      cursor: pointer;
-    }
-
-    .arrow-down {
-      display: inline-block;
-      margin-left: 5px;
-      transform: rotate(90deg);
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .dropdown-open .arrow-down {
-      transform: rotate(0deg);
-    }
-
-    .wavy-line {
-      fill: none;
-      stroke: #5bbad5;
-      stroke-width: 6;
-    }
-
-    .footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px;
-      margin-top: 1.5in;
-    }
-
-    .left-footer,
-    .right-footer,
-    .bottom-footer {
-      text-align: center;
-    }
-
-    .left-footer p,
-    .right-footer p {
-      margin: 5px 0;
-    }
-
-    .middle-left {
-      position: absolute;
-      left: calc(50% - 202px);
-    }
-
-    .middle-right {
-      position: absolute;
-      right: calc(50% - 201px);
-    }
-
-    .bottom-footer {
-      margin-top: 1.5in;
-      text-align: center;
-    }
-
-    .email-subscription {
-      margin-top: 3in;
-      text-align: center;
-    }
-
-    .subscribe-form {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 10px;
-    }
-
-    .email-input {
-      border: none;
-      border-bottom: 1px solid #5bbad5;
-      margin-right: 10px;
-      padding: 5px;
-      outline: none;
-      color: #5bbad5;
-    }
-
-    .subscribe-button {
-      background-color: #5bbad5;
-      color: #ffffff;
-      border: none;
-      padding: 5px 10px;
-      cursor: pointer;
-      outline: none;
-    }
-
-    .moving-graphic {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      animation: waveAnimation 2s infinite linear;
-    }
-
-    @keyframes waveAnimation {
-      0% {
-        transform: translateX(0);
-      }
-
-      100% {
-        transform: translateX(100%);
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <header>
-    <a href="#" class="home-button">home</a>
-    <img src="https://lordicon.com/ee242027-20a3-42a2-a90c-cb00e041d3d8" id="logo" alt="Scoutedd Logo">
-    <div class="line"></div>
-  </header>
-
-  <div class="container">
-    <div class="moving-graphic">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100">
-        <path fill="#5bbad5"
-          d="M0 30c180 0 180 70 360 70s180-70 360-70 180 70 360 70 180-70 360-70 180 70 360 70 180-70 360-70" />
-      </svg>
-    </div>
-    <h2>angel or venture capitalist?</h2>
-    <p>Supercharge your sourcing and due diligence process with our revolutionary platform.</p>
-
-    <div class="line"></div>
-
-    <div class="dropdown dropdown-clickable" onclick="toggleDropdown()">
-      <h2 class="arrow-clickable">our offering<span class="arrow-down">&#9654;</span></h2>
-      <div class="dropdown-content" id="dropdownContent">
-        <ul>
-          <li>Access to high-quality deal flow (trained to scour and present from the widest of sources)</li>
-          <li>Comprehensive due diligence (neural network trained on millions of companies through 20 features)</li>
-          <li>Risk mitigation strategies (assigning ratings to startups)</li>
-          <li>Continuous monitoring and updates (regular update on performance of startups and relevant industry insights)
-          </li>
-        </ul>
+function MyComponent() {
+  return (
+    <div className="flex flex-col pt-3.5 bg-indigo-50">
+      <div className="flex gap-5 self-center w-full text-lg max-w-[1236px] max-md:flex-wrap max-md:max-w-full">
+        <div className="flex-auto text-4xl font-bold text-teal-500 lowercase">
+          scoutdd
+        </div>
+        <div className="flex gap-5 justify-between my-auto text-black max-md:flex-wrap max-md:max-w-full">
+          <div>Products</div>
+          <div>About Us</div>
+          <div>Tour</div>
+          <div>Get in Touch</div>
+        </div>
+        <div className="flex gap-5 self-start text-center leading-[135%]">
+          <div className="flex flex-col justify-center font-semibold text-white bg-teal-500">
+            <div className="justify-center px-7 py-2.5 rounded-md border border-teal-500 border-solid max-md:px-5">
+              Sign Up
+            </div>
+          </div>
+          <div className="flex flex-col justify-center text-teal-500">
+            <div className="justify-center px-9 py-2.5 rounded-md border border-teal-500 border-solid max-md:px-5">
+              Log In
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex justify-center items-center px-16 pt-12 pb-20 mt-9 w-full max-md:px-5 max-md:max-w-full">
+        <div className="flex flex-col items-center mt-14 mb-16 w-full max-w-[1020px] max-md:my-10 max-md:max-w-full">
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/b034c1118642bcef7958ae3510d92bebff215970c7f77435297ea345ba272aed?apiKey=f2701ed1217a4202b9e82b22944a8abc&"
+            className="max-w-full aspect-[3.33] w-[125px]"
+          />
+          <div className="flex gap-5 justify-between self-stretch mt-8 max-md:flex-wrap max-md:max-w-full">
+            <div className="flex justify-center items-center px-6 py-4 border border-solid border-zinc-400 rounded-[96px]">
+              <img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/e47d73e78b81f1d157da2eab07dc0eb88652691f9c2d7516bb1f058c2dfede1c?apiKey=f2701ed1217a4202b9e82b22944a8abc&"
+                className="w-5 aspect-square"
+              />
+            </div>
+            <div className="self-start mt-3.5 text-3xl font-semibold tracking-tighter leading-10 text-center text-slate-800 max-md:max-w-full">
+              Student Login
+            </div>
+          </div>
+          <div className="flex flex-col justify-center px-16 mt-8 max-w-full rounded-3xl w-[552px] max-md:px-5">
+            <div className="flex justify-center items-center px-6 py-4 text-base font-medium tracking-normal leading-6 text-right text-gray-600 border border-solid border-zinc-400 rounded-[96px] max-md:px-5 max-md:max-w-full">
+              <div className="flex gap-3">
+                <img
+                  loading="lazy"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/2e631c97960720e289aac1c57d12f2e938b6c0db397dfd90432fccdcf2c20364?apiKey=f2701ed1217a4202b9e82b22944a8abc&"
+                  className="shrink-0 w-6 aspect-[0.96]"
+                />
+                <div>Sign In with Google</div>
+              </div>
+            </div>
+            <div className="flex gap-4 justify-center items-center mt-6 text-sm font-medium tracking-normal leading-5 text-center text-gray-600 max-md:flex-wrap">
+              <img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/e017f99194110c1ddfcd67215cc6e2711697e6d608c7deab6d12524f9f6c6783?apiKey=f2701ed1217a4202b9e82b22944a8abc&"
+                className="shrink-0 self-stretch my-auto max-w-full border border-solid aspect-[100] border-zinc-400 stroke-[1px] stroke-zinc-400 w-[153px]"
+              />
+              <div className="self-stretch">Or with email</div>
+              <img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/e017f99194110c1ddfcd67215cc6e2711697e6d608c7deab6d12524f9f6c6783?apiKey=f2701ed1217a4202b9e82b22944a8abc&"
+                className="shrink-0 self-stretch my-auto max-w-full border border-solid aspect-[100] border-zinc-400 fill-zinc-400 stroke-[1px] stroke-zinc-400 w-[152px]"
+              />
+            </div>
+            <div className="mt-6 text-base font-semibold tracking-normal leading-6 text-gray-600 max-md:max-w-full">
+              Email
+            </div>
+            <div className="shrink-0 mt-2 h-14 rounded-xl border-2 border-gray-200 border-solid max-md:max-w-full" />
+            <div className="mt-4 text-base font-semibold tracking-normal leading-6 text-gray-600 max-md:max-w-full">
+              Password
+            </div>
+            <div className="flex flex-col justify-center items-end px-5 py-4 mt-2 rounded-xl border-2 border-gray-200 border-solid max-md:max-w-full">
+              <img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/8c3198d7477e23394812680b0d3b07d06d28dce7ed24f4a8e68e37d1bf083ae3?apiKey=f2701ed1217a4202b9e82b22944a8abc&"
+                className="w-5 aspect-square"
+              />
+            </div>
+            <div className="mt-1 text-sm font-medium tracking-normal leading-5 text-gray-600 max-md:max-w-full">
+              Forgot password?
+            </div>
+            <div className="justify-center items-center px-8 py-4 mt-6 text-base font-medium tracking-normal leading-6 text-right text-white bg-teal-500 rounded-[96px] max-md:px-5 max-md:max-w-full">
+              Log In
+            </div>
+            <div className="flex gap-1 justify-center px-20 mt-6 text-base tracking-normal leading-6 text-center max-md:flex-wrap max-md:px-5">
+              <div className="font-medium text-gray-600">
+                Don’t have an account?
+              </div>
+              <div className="font-semibold text-slate-800">Sign Up</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex justify-center items-center px-16 py-10 w-full text-teal-500 bg-white max-md:px-5 max-md:max-w-full">
+        <div className="flex flex-col w-full max-w-[1076px] max-md:max-w-full">
+          <div className="flex z-10 gap-5 w-full whitespace-nowrap max-md:flex-wrap max-md:pr-5 max-md:max-w-full">
+            <div className="flex-auto self-start mt-3.5 text-4xl font-bold lowercase">
+              scoutdd
+            </div>
+            <div className="flex gap-5 justify-between bg-white">
+              <div className="flex flex-col text-lg tracking-tight leading-7">
+                <div className="text-2xl font-medium tracking-tighter leading-8">
+                  Menu
+                </div>
+                <div className="mt-6">Home</div>
+                <div className="mt-6">About</div>
+              </div>
+              <div className="flex flex-col self-start text-base tracking-tight">
+                <div className="text-2xl font-medium tracking-tighter leading-8">
+                  Contact
+                </div>
+                <div className="mt-6">London</div>
+                <div className="mt-4">info@scoutdd.com</div>
+              </div>
+            </div>
+          </div>
+          <div className="items-center px-16 pt-8 text-base font-medium tracking-normal leading-6 max-md:px-5 max-md:max-w-full">
+            © 2023 scoutdd. All rights reserved
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="email-subscription">
-      <p>Be a design partner in our road to MVP and keep updated with news about <strong>our tech</strong>, processes, and
-        launch.</p>
-      <form class="subscribe-form" onsubmit="subscribe(event, 'https://9tav6yuphl.execute-api.eu-west-2.amazonaws.com/subscribe')">
-        <input type="email" id="emailInput" name="email" class="email-input" placeholder="Your email">
-        <button type="submit" class="subscribe-button">subscribe</button>
-      </form>
-    </div>
-  </div>
-
-  <svg class="wavy-line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 30">
-    <path
-      d="M0 10c180 0 180 20 360 20s180-20 360-20 180 20 360 20 180-20 360-20 180 20 360 20 180-20 360-20" />
-  </svg>
-
-  <div class="footer">
-    <div class="left-footer middle-left">
-      <p><strong>Location</strong></p>
-      <p style="font-size: 14px;">London</p>
-    </div>
-
-    <div class="right-footer middle-right">
-      <p><strong>Contact</strong></p>
-      <p style="font-size: 14px;">scouteddvc@gmail.com</p>
-    </div>
-  </div>
-
-  <div class="bottom-footer">
-    <p>Copyright © 2023 scoutedd ltd. All rights reserved.</p>
-  </div>
-
-  <script>
-    // Dummy function for email validation
-    function isValidEmail(email) {
-      // You can replace this with your actual email validation logic
-      return /\S+@\S+\.\S+/.test(email);
-    }
-
-function subscribe(event, apiUrl) {
-    event.preventDefault(); // Prevent the default form submission
-    var emailInput = document.querySelector(".email-input");
-    var email = emailInput.value;
-
-    // Perform basic email validation
-    if (isValidEmail(email)) {
-        // Send the email to your server using fetch
-        fetch(apiUrl + '/subscribe', { // Updated URL with '/subscribe'
-            method: 'POST',
-            mode: 'cors', 
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: email }),
-        })
-        .then(response => {
-            if (response.ok) {
-                // Handle the response from the server
-                return response.json();
-            } else {
-                throw new Error('Server response not OK');
-            }
-        })
-        .then(data => {
-            console.log(data);
-
-            // Display success message
-            showSuccessMessage();
-
-            // Clear the input field after successful submission
-            emailInput.value = "";
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert(`Something went wrong. Please try again. ${error.message}`);
-        });
-    } else {
-        // Handle invalid email
-        alert('Invalid email address');
-    }
-
-    console.log('subscribe function called');
+  );
 }
 
-
-    function showSuccessMessage() {
-      // Create a new element for the success message
-      var successMessage = document.createElement("div");
-      successMessage.innerText = "You're in!";
-      successMessage.style.color = "#5bbad5"; // Set the color to match the theme
-
-      // Append the success message element after the form
-      var subscribeForm = document.querySelector(".subscribe-form");
-      subscribeForm.parentNode.insertBefore(successMessage, subscribeForm.nextSibling);
-
-      // Add a line under the success message
-      var successLine = document.createElement("hr");
-      subscribeForm.parentNode.insertBefore(successLine, successMessage.nextSibling);
-    }
-  </script>
-
-</body>
-
-</html>
